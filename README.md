@@ -8,11 +8,11 @@ Este teste faz uso de tecnologias, como:
 - LESS CSS
 - Deploy utilizando Vercel
 
-## Demo
+<h4 align="center">
+	<a href="https://teste-company-hero.vercel.app/">Demo</a>
+</h4>
 
-[[Clique aqui para acessar a Demo]](https://teste-company-hero.vercel.app/)
-
-## Como utilizar (dev)
+## ⚙️ Como utilizar (dev)
 
 ```
 yarn
@@ -20,6 +20,21 @@ yarn next
 ```
 
 
-## Abordagem do teste
+## 💻 Abordagem do teste
 
 
+## Autor
+
+<a href="https://github.com/feliperucunha">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/51034888?s=400&u=d957f24c0607b08051d57bd562e17db9cf811421&v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Felipe Cunha</b></sub></a>
+ <br />
+
+---
+
+## 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito por Felipe Cunha 👋 [Entre em contato!](https://www.linkedin.com/in/feliperubencunha/)
