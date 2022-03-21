@@ -1,6 +1,6 @@
 # Teste da Empresa Company Hero
 
-Trata-se de um catálogo de animes com ordenação e utiliza dados da API pública [Kitsu](https://kitsu.docs.apiary.io/#)
+Trata-se de um catálogo de animes com ordenação e utiliza dados da API pública [Kitsu](https://kitsu.docs.apiary.io/#).
 Este teste faz uso de tecnologias, como:
 - ReactJs
 - NextJs
@@ -10,7 +10,7 @@ Este teste faz uso de tecnologias, como:
 
 ## Demo
 
-[![Clique aqui para acessar a Demo](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/hello-world)
+[[Clique aqui para acessar a Demo]](https://teste-company-hero.vercel.app/)
 
 ## Como utilizar (dev)
 
@@ -18,3 +18,8 @@ Este teste faz uso de tecnologias, como:
 yarn
 yarn next
 ```
+
+
+## Abordagem do teste
+
+
