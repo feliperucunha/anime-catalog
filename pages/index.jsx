@@ -100,7 +100,6 @@ export default function IndexPage({ data }) {
       <div className="welcome-message">
         <Typography>Bem-vindo ao <strong>Animeflix</strong>, um catálogo de Animes ao seu dispor.</Typography>
       </div>
-
     </div>
   );
 }
