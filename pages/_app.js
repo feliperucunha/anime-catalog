@@ -50,6 +50,15 @@ function App({ Component, pageProps }) {
         </form>
       </PageHeader>
       <Component {...pageProps} />
+
+      <footer>
+        <p>
+          Criado com amor por 
+          <a target="_blank" href="https://www.linkedin.com/in/feliperubencunha/">Felipe Cunha</a>-
+          Outros projetos no meu
+          <a target="_blank" href="https://github.com/feliperucunha">Github</a>
+        </p>
+      </footer>
     </ContainerContext.Provider>
   )
 }
