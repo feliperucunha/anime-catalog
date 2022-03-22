@@ -63,9 +63,9 @@ export default function IndexPage() {
             <li key={id}>
               <Link href="/anime/[id]" as={`/anime/${id}`}>
                 <Card className="anime-list__search-card">
-                  <img src={posterImage} alt={attributes.canonicalTitle} />
+                  <img src={posterImage} alt={attributes.description} />
                   <Typography className="anime-list__search-card__title">{attributes.canonicalTitle}</Typography>
-                  <h4>Average Rating: {attributes.averageRating}</h4>
+                  <h4>Nota: {attributes.averageRating}</h4>
                 </Card>
               </Link>
             </li>

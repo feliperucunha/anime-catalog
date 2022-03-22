@@ -64,7 +64,7 @@ export default function IndexPage({ data }) {
       <Head><title>Animeflix</title></Head>
 
       <ul className="anime-list">
-        <Carousel dotPosition="bottom" slidesToShow={numberOfSlides}>
+        <Carousel autoplay dotPosition="bottom" slidesToShow={numberOfSlides}>
           {results && results.map(result => {
             const { id, attributes } = result;
             const { small: posterImage } = result.attributes.posterImage;
@@ -73,7 +73,7 @@ export default function IndexPage({ data }) {
               <li key={id}>
                 <Link href="/anime/[id]" as={`/anime/${id}`}>
                   <Card className="anime-list__card">
-                    <img src={posterImage} alt={attributes.canonicalTitle} />
+                    <img src={posterImage} alt={attributes.description} />
                     <h3>{attributes.canonicalTitle}</h3>
                   </Card>
                 </Link>
