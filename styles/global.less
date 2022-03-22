@@ -12,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #e8e8e8;
   width: 100vw;
+  height: 100vh;
   overflow-x: hidden;
 }
 
@@ -20,6 +21,14 @@ h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+}
+
+.navbar {
+  background-color: grey;
+  overflow: hidden;
+  position: fixed;
+  z-index: 999;
+  width: 100%;;
 }
 
 .navbar > div {
@@ -79,6 +88,7 @@ h3 {
   list-style: none;
   grid-gap: 1.5rem;
   padding-left: 0;
+  padding-top: 15%;
 }
 
 .anime-list img {
@@ -94,6 +104,14 @@ h3 {
   margin: 20px !important;
   cursor: pointer;
   max-width: 400px;
+  box-shadow: 0px 0px 0px grey;
+  -webkit-transition:  box-shadow .6s ease-out;
+  box-shadow: .8px .9px 3px grey;
+}
+
+.anime-list__card:hover { 
+  box-shadow: 1px 8px 20px grey;
+  -webkit-transition:  box-shadow .6s ease-in;
 }
 
 .search-container {
@@ -109,6 +127,7 @@ h3 {
   list-style: none;
   grid-gap: 1.5rem;
   padding-left: 0;
+  padding-top: 10%;
 }
 
 .anime-list-search img {
@@ -122,6 +141,14 @@ h3 {
   text-align: center;
   border-radius: 10px !important;
   cursor: pointer;
+  box-shadow: 0px 0px 0px grey;
+  -webkit-transition:  box-shadow .6s ease-out;
+  box-shadow: .8px .9px 3px grey;
+}
+
+.anime-list__search-card:hover { 
+  box-shadow: 1px 8px 20px grey;
+  -webkit-transition:  box-shadow .6s ease-in;
 }
 
 .anime-list__search-card__title {
@@ -136,6 +163,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 25%;
 }
 
 footer {
@@ -163,4 +191,26 @@ footer a {
   text-decoration: none;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+@media (max-width: 767px) {
+  .welcome-message {
+    padding-top: 5%;
+    font-size: 1.5rem;
+    padding-bottom: 15%;
+  }
+
+  .anime-list-search {
+    padding-top: 25%;
+  }
+
+  .anime-list {
+    padding-top: 25%;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcome-message {
+    padding-bottom: 20%;
+  }
 }

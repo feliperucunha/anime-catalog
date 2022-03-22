@@ -53,6 +53,7 @@ export default function IndexPage({ data }) {
 
   const size = useWindowSize();
   let numberOfSlides = 4;
+  let showDots = true
 
   if (size.width < 1360) {
     numberOfSlides = 3;
@@ -64,11 +65,12 @@ export default function IndexPage({ data }) {
 
   if (size.width < 706) {
     numberOfSlides = 1;
+    showDots = false;
   }
 
   return (
     <div>
-      <Head><title>Animeflix</title></Head>
+      <Head><title>Animelog</title></Head>
 
       {loading ? (
         <div className="spinner">
@@ -76,7 +78,7 @@ export default function IndexPage({ data }) {
         </div>
       ) : (
         <ul className="anime-list">
-          <Carousel autoplay dotPosition="bottom" slidesToShow={numberOfSlides}>
+          <Carousel autoplay dotPosition="bottom" dots={showDots} slidesToShow={numberOfSlides}>
             {results && results.map(result => {
               const { id, attributes } = result;
               const { small: posterImage } = result.attributes.posterImage;
@@ -98,7 +100,7 @@ export default function IndexPage({ data }) {
       )}
 
       <div className="welcome-message">
-        <Typography>Bem-vindo ao <strong>Animeflix</strong>, um catálogo de Animes ao seu dispor.</Typography>
+        <Typography>Bem-vindo ao <strong>Animelog</strong>, um catálogo de Animes ao seu dispor.</Typography>
       </div>
     </div>
   );
