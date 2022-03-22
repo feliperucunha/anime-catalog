@@ -1,5 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable require-jsdoc */
 import {useContext} from 'react';
 import {useRouter} from 'next/router';
 import Head from 'next/head';

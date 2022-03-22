@@ -33,32 +33,34 @@ function App({Component, pageProps}) {
 
   return (
     <ContainerContext.Provider value={containerContext}>
-      <PageHeader className="navbar">
-        <Link href="/">
-          <div>
-            <Typography className="navbar__name">Animelog</Typography>
-          </div>
-        </Link>
-        <form className="search" onSubmit={handleSearchSubmit}>
-          <Input
-            name="query"
-            type="search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Pesquise aqui"
-          />
-        </form>
-      </PageHeader>
-      <Component {...pageProps} />
+      <div className='navbar-container'>
+        <PageHeader className="navbar">
+          <Link href="/">
+            <div>
+              <Typography className="navbar__name">Animelog</Typography>
+            </div>
+          </Link>
+          <form className="search" onSubmit={handleSearchSubmit}>
+            <Input
+              name="query"
+              type="search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Pesquise aqui"
+            />
+          </form>
+        </PageHeader>
+        <Component {...pageProps} />
 
-      <footer>
-        <p>
-          Criado com amor por
-          <a target="_blank" href="https://www.linkedin.com/in/feliperubencunha/" rel="noreferrer">Felipe Cunha</a>-
-          Outros projetos no meu
-          <a target="_blank" href="https://github.com/feliperucunha" rel="noreferrer">Github</a>
-        </p>
-      </footer>
+        <footer>
+          <p>
+            Criado com amor por
+            <a target="_blank" href="https://www.linkedin.com/in/feliperubencunha/" rel="noreferrer">Felipe Cunha</a>-
+            Outros projetos no meu
+            <a target="_blank" href="https://github.com/feliperucunha" rel="noreferrer">Github</a>
+          </p>
+        </footer>
+      </div>
     </ContainerContext.Provider>
   );
 }
