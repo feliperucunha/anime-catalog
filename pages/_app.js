@@ -2,7 +2,7 @@ require("../styles/variables.less");
 require("../styles/global.less");
 require("../styles/variables-css.less");
 
-import { Button, Input, PageHeader } from "antd";
+import { Typography, Input, PageHeader } from "antd";
 import { useState } from 'react'; 
 import ContainerContext from "../contexts/containerContext";
 import Link from "next/link";
@@ -33,9 +33,11 @@ function App({ Component, pageProps }) {
 
   return (
     <ContainerContext.Provider value={containerContext}>
-      <PageHeader>
+      <PageHeader className="navbar">
         <Link href="/">
-          <Button>Animeflix</Button>
+          <div>
+            <Typography className="navbar__name">Animeflix</Typography>
+          </div>
         </Link>
         <form className="search" onSubmit={handleSearchSubmit}>
           <Input 
@@ -43,6 +45,7 @@ function App({ Component, pageProps }) {
             type="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Pesquise aqui"
           />
         </form>
       </PageHeader>
