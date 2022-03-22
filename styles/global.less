@@ -10,7 +10,7 @@ body {
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e8e8e8;
+  background-color: #01172F;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
@@ -24,7 +24,7 @@ h3 {
 }
 
 .navbar {
-  background-color: grey;
+  background-color: #446DF6;
   overflow: hidden;
   position: fixed;
   z-index: 999;
@@ -77,6 +77,10 @@ h3 {
   text-align: center;
   font-family: monospace;
   text-transform: uppercase;
+  
+  article {
+    color: #08A4BD;
+  }
 }
 
 .anime-list {
@@ -103,7 +107,9 @@ h3 {
   text-align: center;
   border-radius: 10px !important;
   margin: 20px !important;
+  margin-bottom: 40px !important;
   cursor: pointer;
+  background-color: #00635D !important;
   max-width: 400px;
   box-shadow: 0px 0px 0px grey;
   -webkit-transition:  box-shadow .6s ease-out;
@@ -139,6 +145,7 @@ h3 {
 .anime-list__search-card {
   display: flex;
   justify-content: center;
+  background-color: #00635D !important;
   text-align: center;
   border-radius: 10px !important;
   cursor: pointer;
@@ -160,6 +167,15 @@ h3 {
   max-width: 180px;
 }
 
+.next-button {
+  color: #446DF6;
+}
+
+.previous-button {
+  color: #08A4BD;
+  margin-right: 10px;
+}
+
 .anime-page {
   height: 120vh;
 }
@@ -168,13 +184,6 @@ h3 {
   padding-top: 350px;
   padding-left: 10vw;
   padding-right: 10vw;
-}
-
-.anime-page__cover {
-  padding-top: 7%;
-  z-index: -1;
-  background-size: cover;
-  //background-size: 100%;
 }
 
 .anime-page__card-container {
@@ -202,10 +211,11 @@ h3 {
 .anime-page__text-container {
   padding: 30px;
   padding-bottom: 0;
+  font-size: 17px;
 }
 
 .anime-page__text-container__title {
-  font-size: 25px;
+  font-size: 35px;
   font-weight: 500;
 }
 
@@ -292,12 +302,6 @@ footer a {
 
   .anime-page__button {
     padding-bottom: 100px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .anime-page__cover {
-    padding-top: 50px;
   }
 }
 

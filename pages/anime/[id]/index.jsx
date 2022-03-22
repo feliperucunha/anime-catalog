@@ -49,7 +49,6 @@ export default function ItemPage({data}) {
         <div className="anime-page">
           {anime && (
             <div className="anime-page__card">
-              {/* <img className='anime-page__cover' src={anime.coverImage.original} /> */}
               <div className='anime-page__card-container'>
                 <div className='anime-page__card-container__poster'> 
                   <img src={anime.posterImage.original} />

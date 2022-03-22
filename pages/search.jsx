@@ -59,7 +59,7 @@ export default function IndexPage() {
 
   return (
     <div className="search-container">
-      <Head><title>Animelog | Search: {searchTerm}</title></Head>
+      <Head><title>Animelog | Busca: {searchTerm}</title></Head>
 
       {loading ? (
         <div className="spinner">
@@ -91,8 +91,8 @@ export default function IndexPage() {
         <h1>Nenhum Resultado, por favor, pesquise com outro termo.</h1>
       )}
 
-      {previousLink && <Button onClick={handlePreviousPage}>Página Anterior</Button>}
-      {nextLink && <Button onClick={handleNextPage}>Próxima Página</Button>}
+      {previousLink && <Button className='previous-button' onClick={handlePreviousPage}>Página Anterior</Button>}
+      {nextLink && <Button className='next-button' onClick={handleNextPage}>Próxima Página</Button>}
     </div>
   );
 }
