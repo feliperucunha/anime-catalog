@@ -98,7 +98,11 @@ export default function IndexPage() {
       )}
 
       <div className='buttons-container'>
-        {previousLink && <Button className='previous-button' onClick={handlePreviousPage}>Página Anterior</Button>}
+        {previousLink ? 
+          (<Button className='previous-button' onClick={handlePreviousPage}>Página Anterior</Button>)
+        : (
+          <div />
+        )}
         {nextLink && <Button className='next-button' onClick={handleNextPage}>Próxima Página</Button>}
       </div>
     </div>
