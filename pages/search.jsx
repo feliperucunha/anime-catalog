@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
 import { useState, useContext, useEffect } from 'react'; 
-import { Button, Input, Typography, PageHeader, Card } from "antd";
+import { Button, Input, Typography, Spin, Card } from "antd";
 import ContainerContext from "../contexts/containerContext";
 
 export default function IndexPage() {
@@ -10,6 +10,7 @@ export default function IndexPage() {
   const [ nextLink, setNextLink ] = useState('');
   const [ previousLink, setPreviousLink ] = useState('');
   const [ noResults, setNoResults ] = useState(false);
+  const [ loading, setLoading ] = useState(true);
   const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${query}&page[limit]=12}`;
 
   useEffect(() => {
@@ -18,9 +19,11 @@ export default function IndexPage() {
         .then(res => res.json())
         .then(res => {
           if (res.data.length > 0) {
+            setLoading(false);
             setResults(res.data);
             setNextLink(res.links.next || '');
           } else {
+            setLoading(false);
             setNoResults(true);
           }
         });
@@ -29,9 +32,11 @@ export default function IndexPage() {
   }, [searchTerm, submitSearch]);
 
   function handlePreviousPage() {
+    setLoading(true);
     fetch(previousLink)
     .then(res => res.json())
     .then(res => {
+      setLoading(false);
       setNextLink(res.links.next || '')
       setPreviousLink(res.links.prev || '')
       setResults(res.data);
@@ -40,9 +45,11 @@ export default function IndexPage() {
   }
 
   function handleNextPage() {
+    setLoading(true);
     fetch(nextLink)
     .then(res => res.json())
     .then(res => {
+      setLoading(false);
       setNextLink(res.links.next || '')
       setPreviousLink(res.links.prev || '')
       setResults(res.data);
@@ -54,24 +61,31 @@ export default function IndexPage() {
     <div className="search-container">
       <Head><title>Animeflix | Search: {searchTerm}</title></Head>
 
-      <ul className="anime-list-search">
-        {results && results.map(result => {
-          const { id, attributes } = result;
-          const { small: posterImage } = result.attributes.posterImage;
+      {loading ? (
+        <div className="spinner">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <ul className="anime-list-search">
+          {results && results.map(result => {
+            const { id, attributes } = result;
+            const { small: posterImage } = result.attributes.posterImage;
 
-          return (
-            <li key={id}>
-              <Link href="/anime/[id]" as={`/anime/${id}`}>
-                <Card className="anime-list__search-card">
-                  <img src={posterImage} alt={attributes.description} />
-                  <Typography className="anime-list__search-card__title">{attributes.canonicalTitle}</Typography>
-                  <h4>Nota: {attributes.averageRating}</h4>
-                </Card>
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+            return (
+              <li key={id}>
+                <Link href="/anime/[id]" as={`/anime/${id}`}>
+                  <Card className="anime-list__search-card">
+                    <img src={posterImage} alt={attributes.description} />
+                    <Typography className="anime-list__search-card__title">{attributes.canonicalTitle}</Typography>
+                    <h4>Nota: {attributes.averageRating}</h4>
+                  </Card>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      )}
+
 
       {noResults && (
         <h1>Nenhum Resultado, por favor, pesquise com outro termo.</h1>
