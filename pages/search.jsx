@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import {useState, useContext, useEffect} from 'react';
-import {Button, Rate, Typography, Spin, Card} from 'antd';
+import {Button, Rate, Typography, Card} from 'antd';
 import ContainerContext from '../contexts/containerContext';
+import SpinnerComponent from '../components/spinner';
 
 export default function IndexPage() {
   const {searchTerm = '', submitSearch, setSubmitSearch} = useContext(ContainerContext);
@@ -14,19 +15,23 @@ export default function IndexPage() {
   const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${query}&page[limit]=12}`;
 
   useEffect(() => {
-    if (submitSearch) {
+    function fetchData() {
       fetch(searchEndpoint(searchTerm))
-          .then((res) => res.json())
-          .then((res) => {
-            if (res.data.length > 0) {
-              setLoading(false);
-              setResults(res.data);
-              setNextLink(res.links.next || '');
-            } else {
-              setLoading(false);
-              setNoResults(true);
-            }
-          });
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.data.length > 0) {
+            setLoading(false);
+            setResults(res.data);
+            setNextLink(res.links.next || '');
+          } else {
+            setLoading(false);
+            setNoResults(true);
+          }
+        });
+    }
+
+    if (submitSearch) {
+      fetchData()
       setSubmitSearch(false);
     };
   }, [searchTerm, submitSearch]);
@@ -62,9 +67,7 @@ export default function IndexPage() {
       <Head><title>Animelog | Busca: {searchTerm}</title></Head>
 
       {loading ? (
-        <div className="spinner">
-          <Spin size="large" />
-        </div>
+        <SpinnerComponent />
       ) : (
         <ul className="anime-list-search">
           {results && results.map((result) => {
@@ -88,11 +91,16 @@ export default function IndexPage() {
 
 
       {noResults && (
-        <h1>Nenhum Resultado, por favor, pesquise com outro termo.</h1>
+        <div className='no-results-message'> 
+          <h1>Nenhum resultado encontrado.</h1>
+          <h2>Por favor, pesquise com outro termo.</h2>
+        </div>
       )}
 
-      {previousLink && <Button className='previous-button' onClick={handlePreviousPage}>Página Anterior</Button>}
-      {nextLink && <Button className='next-button' onClick={handleNextPage}>Próxima Página</Button>}
+      <div className='buttons-container'>
+        {previousLink && <Button className='previous-button' onClick={handlePreviousPage}>Página Anterior</Button>}
+        {nextLink && <Button className='next-button' onClick={handleNextPage}>Próxima Página</Button>}
+      </div>
     </div>
   );
 }

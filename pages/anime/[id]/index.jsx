@@ -2,7 +2,8 @@ import {useContext, useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import Head from 'next/head';
 import ContainerContext from '../../../contexts/containerContext';
-import {Button, Typography, Rate, Spin} from 'antd';
+import {Button, Typography, Rate} from 'antd';
+import SpinnerComponent from '../../../components/spinner';
 
 const animeEndpoint = 'https://kitsu.io/api/edge/';
 
@@ -42,9 +43,7 @@ export default function ItemPage({data}) {
       <Head><title>Animelog | {anime.canonicalTitle}</title></Head>
 
       {loading ? (
-        <div className="spinner">
-            <Spin size="large" />
-        </div>
+        <SpinnerComponent />
       ) : (
         <div className="anime-page">
           {anime && (
@@ -66,7 +65,7 @@ export default function ItemPage({data}) {
           )}
 
           <div className='anime-page__button'>
-            <Button size='large' danger onClick={handleGoBackButton}>
+            <Button size='large' onClick={handleGoBackButton}>
               Voltar
             </Button>
           </div>
