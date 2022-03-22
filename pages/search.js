@@ -9,7 +9,7 @@ export default function IndexPage() {
   const [ results, setResults ] = useState('');
   const [ nextLink, setNextLink ] = useState('');
   const [ previousLink, setPreviousLink ] = useState('');
-  const [ loadMoreLink, setLoadMoreLink ] = useState('');
+  const [ noResults, setNoResults ] = useState(false);
   const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${query}&page[limit]=12}`;
 
   useEffect(() => {
@@ -17,8 +17,12 @@ export default function IndexPage() {
       fetch(searchEndpoint(searchTerm))
         .then(res => res.json())
         .then(res => {
-          setResults(res.data || false);
-          setNextLink(res.links.next || false);
+          if (res.data.length > 0) {
+            setResults(res.data);
+            setNextLink(res.links.next || false);
+          } else {
+            setNoResults(true);
+          }
         });
       setSubmitSearch(false);
     };
@@ -68,8 +72,8 @@ export default function IndexPage() {
         })}
       </ul>
 
-      {!results && (
-        <h1>Nenhum Resultado</h1>
+      {noResults && (
+        <h1>Nenhum Resultado, por favor, pesquise com outro termo.</h1>
       )}
 
       {previousLink && <Button onClick={handlePreviousPage}>Página Anterior</Button>}

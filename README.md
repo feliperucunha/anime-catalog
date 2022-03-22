@@ -30,7 +30,7 @@ demorei um pouco para saber o esquema de pastas, mas consegui implementar e cons
 - Depois resolvi criar uma página inicial com um carrocel, pois achei que ficaria melhor e mais bonito.
 - Com a página inicial desenvolvida resolvi implementar o contexto para tornar a navbar compartilhada,
 desta forma tive que reformular a busca implementada inicialmente.
-- Depois reparei que a API retornava mais resultados do que os que eu estava mostrando, então implementei os botões de Próximo e Anterior, ou seja, implementei a paginação na página de buscas.
+- Depois reparei que a API retornava mais resultados do que os que eu estava mostrando, então implementei os botões de Próximo e Anterior, ou seja, implementei a paginação na página de buscas. Da mesma forma, implementei o caso onde não há resultados para a busca.
 
 ## Autor
 
