@@ -1,6 +1,7 @@
 require("../styles/variables.less");
 require("../styles/global.less");
 require("../styles/variables-css.less");
+
 import { Button, Input, PageHeader } from "antd";
 import { useState } from 'react'; 
 import ContainerContext from "../contexts/containerContext";
@@ -10,6 +11,7 @@ import Router from 'next/router';
 function App({ Component, pageProps }) {
   const [ searchTerm, setSearchTerm ] = useState();
   const [ submitSearch, setSubmitSearch ] = useState(false);
+
   function handleSearchSubmit(e) {
     e.preventDefault();
 

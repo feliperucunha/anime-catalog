@@ -7,18 +7,44 @@ import ContainerContext from "../contexts/containerContext";
 export default function IndexPage() {
   const { searchTerm = '', submitSearch, setSubmitSearch } = useContext(ContainerContext);
   const [ results, setResults ] = useState('');
-  const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${query}&page[limit]=12`;
+  const [ nextLink, setNextLink ] = useState('');
+  const [ previousLink, setPreviousLink ] = useState('');
+  const [ loadMoreLink, setLoadMoreLink ] = useState('');
+  const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${query}&page[limit]=12}`;
 
   useEffect(() => {
     if (submitSearch) {
       fetch(searchEndpoint(searchTerm))
         .then(res => res.json())
         .then(res => {
-          setResults(res.data);
+          setResults(res.data || false);
+          setNextLink(res.links.next || false);
         });
       setSubmitSearch(false);
     };
   }, [searchTerm, submitSearch]);
+
+  function handlePreviousPage() {
+    fetch(previousLink)
+    .then(res => res.json())
+    .then(res => {
+      setNextLink(res.links.next || '')
+      setPreviousLink(res.links.prev || '')
+      setResults(res.data);
+    });
+  setSubmitSearch(false);
+  }
+
+  function handleNextPage() {
+    fetch(nextLink)
+    .then(res => res.json())
+    .then(res => {
+      setNextLink(res.links.next || '')
+      setPreviousLink(res.links.prev || '')
+      setResults(res.data);
+    });
+  setSubmitSearch(false);
+  }
 
   return (
     <div>
@@ -41,6 +67,13 @@ export default function IndexPage() {
           )
         })}
       </ul>
+
+      {!results && (
+        <h1>Nenhum Resultado</h1>
+      )}
+
+      {previousLink && <Button onClick={handlePreviousPage}>Página Anterior</Button>}
+      {nextLink && <Button onClick={handleNextPage}>Próxima Página</Button>}
     </div>
   );
 }
