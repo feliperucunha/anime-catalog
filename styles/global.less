@@ -15,7 +15,7 @@ body {
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #01172F;
+  background-color: #01172F !important;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
@@ -74,6 +74,12 @@ h3 {
 @media (max-height: 900px) {
   .welcome-message {
     padding-top: 0;
+  }
+}
+
+@media (max-height: 800px) {
+  .welcome-message {
+    padding-bottom: 50px;
   }
 }
 
