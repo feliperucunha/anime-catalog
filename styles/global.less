@@ -13,6 +13,14 @@ body {
   background-color: #fff;
   width: 100vw;
   overflow-x: hidden;
+  padding: 20px;
+}
+
+h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .anime-list {
@@ -23,8 +31,56 @@ body {
   );
   list-style: none;
   grid-gap: 1.5rem;
+  padding-left: 0;
 }
 
 .anime-list img {
   max-width: 100%;
+  border-radius: 5px;
+}
+
+.anime-list__card {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px !important;
+  margin: 20px !important;
+  cursor: pointer;
+  max-width: 400px;
+}
+
+.search-container {
+  padding: 50px;
+}
+
+.anime-list-search {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  );
+  list-style: none;
+  grid-gap: 1.5rem;
+  padding-left: 0;
+}
+
+.anime-list-search img {
+  max-width: 150px;
+  border-radius: 5px;
+}
+
+.anime-list__search-card {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px !important;
+  cursor: pointer;
+}
+
+.anime-list__search-card__title {
+  font-size: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
 }

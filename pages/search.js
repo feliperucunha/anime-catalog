@@ -19,7 +19,7 @@ export default function IndexPage() {
         .then(res => {
           if (res.data.length > 0) {
             setResults(res.data);
-            setNextLink(res.links.next || false);
+            setNextLink(res.links.next || '');
           } else {
             setNoResults(true);
           }
@@ -51,10 +51,10 @@ export default function IndexPage() {
   }
 
   return (
-    <div>
+    <div className="search-container">
       <Head><title>Animeflix | Search: {searchTerm}</title></Head>
 
-      <ul className="anime-list">
+      <ul className="anime-list-search">
         {results && results.map(result => {
           const { id, attributes } = result;
           const { small: posterImage } = result.attributes.posterImage;
@@ -62,9 +62,10 @@ export default function IndexPage() {
           return (
             <li key={id}>
               <Link href="/anime/[id]" as={`/anime/${id}`}>
-                <Card>
+                <Card className="anime-list__search-card">
                   <img src={posterImage} alt={attributes.canonicalTitle} />
-                  <h3>{attributes.canonicalTitle}</h3>
+                  <Typography className="anime-list__search-card__title">{attributes.canonicalTitle}</Typography>
+                  <h4>Average Rating: {attributes.averageRating}</h4>
                 </Card>
               </Link>
             </li>
