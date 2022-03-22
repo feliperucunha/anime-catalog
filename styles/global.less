@@ -159,38 +159,68 @@ h3 {
   max-width: 180px;
 }
 
+.anime-page {
+  height: 120vh;
+}
+
+.anime-page__card{
+  padding-top: 350px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
 .anime-page__cover {
-  width: 100%;
   padding-top: 7%;
   z-index: -1;
+  background-size: cover;
+  //background-size: 100%;
 }
 
 .anime-page__card-container {
-  position: relative;
   background-color: white;
   padding: 50px;
   display: flex;
-  bottom: 200px;
   border-radius: 20px;
+  padding-bottom: 0;
 }
 
 .anime-page__card-container__poster {
-  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: relative;
   bottom: 200px;
+}
+
+.anime-page__card-container__poster img {
+  border: 2px solid black;
   width: 250px;
 }
 
 .anime-page__text-container {
   padding: 30px;
+  padding-bottom: 0;
+}
+
+.anime-page__text-container__title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.anime-page__text-container__age {
+  padding-bottom: 10px;
+}
+
+.anime-page__text-container__description {
+  padding-bottom: 10px;
 }
 
 .anime-page__button {
+  padding-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 130px;
-  position: relative;
 }
 
 .spinner {
@@ -249,22 +279,28 @@ footer a {
   }
 }
 
+@media (max-width: 990px) {
+  .anime-page__card-container {
+    display: block;
+  }
+
+  .anime-page__text-container {
+    position: relative;
+    bottom: 100px;
+  }
+
+  .anime-page__button {
+    padding-bottom: 100px;
+  }
+}
+
 @media (min-width: 1280px) {
   .anime-page__cover {
     padding-top: 50px;
   }
-
-  .anime-page__card-container {
-    bottom: 20rem;
-  }
 }
 
 @media (min-width: 1500px) {
-  .anime-page__card-container {
-    bottom: 30rem;
-    padding-bottom: 200px;
-  }
-
   .anime-list {
     padding-top: 150px;
   }

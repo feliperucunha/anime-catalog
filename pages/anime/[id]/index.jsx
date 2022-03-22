@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {useRouter} from 'next/router';
 import Head from 'next/head';
 import ContainerContext from '../../../contexts/containerContext';
-import {Button, Typography, Card} from 'antd';
+import {Button, Typography, Rate} from 'antd';
 
 const animeEndpoint = 'https://kitsu.io/api/edge/';
 
@@ -36,20 +36,22 @@ export default function ItemPage({data}) {
 
       <div className="anime-page">
         {anime && (
-          <>
-            <img className='anime-page__cover' src={anime.coverImage.original} />
+          <div className="anime-page__card">
+            {/* <img className='anime-page__cover' src={anime.coverImage.original} /> */}
             <div className='anime-page__card-container'>
-              <img className='anime-page__card-container__poster' src={anime.posterImage.original} />
+              <div className='anime-page__card-container__poster'> 
+                <img src={anime.posterImage.original} />
+                <Rate disabled defaultValue={parseInt(anime.averageRating/20)} />
+              </div>
               <div className='anime-page__text-container'>
-                <Typography>{anime.canonicalTitle}</Typography>
-                <Typography>Restrição de Idade: {anime.ageRatingGuide}</Typography>
-                <Typography>Nota: {anime.averageRating}</Typography>
-                <Typography>{anime.description}</Typography>
+                <Typography className='anime-page__text-container__title'>{anime.canonicalTitle}</Typography>
+                <Typography className='anime-page__text-container__age'>Restrição de Idade: <strong>{anime.ageRatingGuide}</strong></Typography>
+                <Typography className='anime-page__text-container__description'>{anime.description}</Typography>
                 <Typography>Número de Episódios: {anime.episodeCount}</Typography>
                 {anime.youtubeVideoId && <a target="_blank" href={`${youtubeLink}${anime.youtubeVideoId}`} rel="noreferrer">Assistir ao trailer</a>}
               </div>
             </div>
-          </>
+          </div>
         )}
 
         <div className='anime-page__button'>
