@@ -1,21 +1,24 @@
 import Link from "next/link";
 import Head from "next/head";
-import { useState, useContext } from 'react'; 
+import { useState, useContext, useEffect } from 'react'; 
 import { Button, Input, Typography, PageHeader, Card } from "antd";
 import ContainerContext from "../contexts/containerContext";
 
 export default function IndexPage() {
-  const { searchTerm = '' } = useContext(ContainerContext);
+  const { searchTerm = '', submitSearch, setSubmitSearch } = useContext(ContainerContext);
   const [ results, setResults ] = useState('');
   const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${query}&page[limit]=12`;
 
-  if (searchTerm) {
-    fetch(searchEndpoint(searchTerm))
-      .then(res => res.json())
-      .then(res => {
-        setResults(res.data);
-      })
-  };
+  useEffect(() => {
+    if (submitSearch) {
+      fetch(searchEndpoint(searchTerm))
+        .then(res => res.json())
+        .then(res => {
+          setResults(res.data);
+        });
+      setSubmitSearch(false);
+    };
+  }, [searchTerm, submitSearch]);
 
   return (
     <div>

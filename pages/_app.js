@@ -9,6 +9,7 @@ import Router from 'next/router';
 
 function App({ Component, pageProps }) {
   const [ searchTerm, setSearchTerm ] = useState();
+  const [ submitSearch, setSubmitSearch ] = useState(false);
   function handleSearchSubmit(e) {
     e.preventDefault();
 
@@ -18,11 +19,14 @@ function App({ Component, pageProps }) {
     const value = fieldQuery.value || '';
 
     setSearchTerm(value);
+    setSubmitSearch(true);
     Router.push('/search')
   };
 
   const containerContext = {
-    searchTerm
+    searchTerm,
+    submitSearch,
+    setSubmitSearch
   };
 
   return (
