@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
 import { useState, useContext, useEffect } from 'react'; 
-import { Button, Input, Typography, Spin, Card } from "antd";
+import { Button, Rate, Typography, Spin, Card } from "antd";
 import ContainerContext from "../contexts/containerContext";
 
 export default function IndexPage() {
@@ -77,7 +77,7 @@ export default function IndexPage() {
                   <Card className="anime-list__search-card">
                     <img src={posterImage} alt={attributes.description} />
                     <Typography className="anime-list__search-card__title">{attributes.canonicalTitle}</Typography>
-                    <h4>Nota: {attributes.averageRating}</h4>
+                    <Rate disabled defaultValue={parseInt(attributes.averageRating/20)} />
                   </Card>
                 </Link>
               </li>

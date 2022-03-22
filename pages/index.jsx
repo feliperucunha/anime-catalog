@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Head from "next/head";
-import { Card, Carousel, Spin } from "antd";
+import { Card, Carousel, Spin, Typography } from "antd";
 import { useState, useEffect } from 'react'; 
 
 const animeEndpoint = 'https://kitsu.io/api/edge/trending/anime';
@@ -94,7 +94,12 @@ export default function IndexPage({ data }) {
             })}
           </Carousel>
         </ul>
+
       )}
+
+      <div className="welcome-message">
+        <Typography>Bem-vindo ao <strong>Animeflix</strong>, um catálogo de Animes ao seu dispor.</Typography>
+      </div>
 
     </div>
   );
