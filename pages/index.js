@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Head from "next/head";
-import { useState, useEffect } from 'react'; 
-import { Button, Input, Typography, PageHeader, Card } from "antd";
+import { useState, useEffect, useContext } from 'react'; 
+import { Button, Input, Typography, PageHeader, Card, Carousel } from "antd";
+import ContainerContext from "../contexts/containerContext";
 
 const animeEndpoint = 'https://kitsu.io/api/edge/trending/anime';
 
@@ -17,9 +18,10 @@ export async function getServerSideProps() {
 }
 
 export default function IndexPage({ data }) {
+  const { searchTerm } = useContext(ContainerContext);
   const { data: firstResults = [] } = data;
   const [ results, setResults ] = useState(firstResults);
-  const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${query}&page[limit]=12`
+  const searchEndpoint = (query) => `https://kitsu.io/api/edge/anime?filter[text]=${searchTerm}&page[limit]=20`
 
   function handleSearchSubmit(e) {
     e.preventDefault();
@@ -29,8 +31,8 @@ export default function IndexPage({ data }) {
     const fieldQuery = fields.find(field => field.name === 'query');
     const value = fieldQuery.value || '';
 
-    if (value) {
-      fetch(searchEndpoint(value))
+    if (search) {
+      fetch(searchEndpoint(searchTerm))
         .then(res => res.json())
         .then(res => {
           setResults(res.data);
@@ -46,33 +48,35 @@ export default function IndexPage({ data }) {
     <div>
       <Head><title>Animeflix</title></Head>
 
-      <PageHeader>
+      {/* <PageHeader>
         <Button onClick={handleLandingPage}>Animeflix</Button>
-      </PageHeader>
+        <form className="search" onSubmit={handleSearchSubmit}>
+          <Input 
+            name="query"
+            type="search"
+          />
+        </form>
+      </PageHeader> */}
 
-      <form className="search" onSubmit={handleSearchSubmit}>
-        <Input 
-          name="query"
-          type="search"
-        />
-      </form>
 
       <ul className="anime-list">
-        {results && results.map(result => {
-          const { id, attributes } = result;
-          const { small: posterImage } = result.attributes.posterImage;
+        <Carousel autoplay dotPosition="bottom" slidesToShow={4}>
+          {results && results.map(result => {
+            const { id, attributes } = result;
+            const { small: posterImage } = result.attributes.posterImage;
 
-          return (
-            <li key={id}>
-              <Link href="/anime/[id]" as={`/anime/${id}`}>
-                <Card>
-                  <img src={posterImage} alt={attributes.canonicalTitle} />
-                  <h3>{attributes.canonicalTitle}</h3>
-                </Card>
-              </Link>
-            </li>
-          )
-        })}
+            return (
+              <li key={id}>
+                <Link href="/anime/[id]" as={`/anime/${id}`}>
+                  <Card>
+                    <img src={posterImage} alt={attributes.canonicalTitle} />
+                    <h3>{attributes.canonicalTitle}</h3>
+                  </Card>
+                </Link>
+              </li>
+            )
+          })}
+        </Carousel>
       </ul>
     </div>
   );
