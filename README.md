@@ -22,6 +22,14 @@ yarn next
 
 ## 💻 Abordagem do teste
 
+- Primeiramente utilizei um boilerplate de NextJs com Antd e Less já que não achei suporte nativo, depois
+fiz a busca dos dados para saber se estava tudo ok com a API pública e ao receber os dados normalmente
+eu os mapeei para que fossem mostrados em listagem, essa foi a primeira grande etapa.
+- Depois fiz a página de item específico mandando os dados para ela, pela minha falta de experiência com o Next,
+demorei um pouco para saber o esquema de pastas, mas consegui implementar e conseguir os dados específicos.
+- Depois resolvi criar uma página inicial com um carrocel, pois achei que ficaria melhor e mais bonito.
+- Com a página inicial desenvolvida resolvi implementar o contexto para tornar a navbar compartilhada,
+desta forma tive que reformular a busca implementada inicialmente.
 
 ## Autor
 
