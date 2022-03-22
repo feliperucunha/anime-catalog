@@ -25,7 +25,7 @@ h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  max-width: 350px;
 }
 
 @media (max-width: 767px) {
@@ -50,9 +50,24 @@ h3 {
   }
 }
 
+@media (max-width: 768px) {
+  .anime-list__card .ant-card-body img {
+    max-width: 168px;
+  }
+
+  h3 {
+    max-width: 150px;
+  }
+
+  .anime-page__button {
+    padding-bottom: 70px !important;
+  }
+}
+
 @media (max-width: 990px) {
   .anime-page__card-container {
     display: block;
+    padding: 10px;
   }
 
   .anime-page__text-container {
@@ -66,7 +81,7 @@ h3 {
 }
 
 @media (min-width: 1500px) {
-  .anime-list {
+  .anime-list .ant-carousel {
     padding-top: 150px;
   }
 }
