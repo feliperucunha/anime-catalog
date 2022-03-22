@@ -78,7 +78,7 @@ export default function IndexPage({data}) {
         </div>
       ) : (
         <ul className="anime-list">
-          <Carousel autoplay dotPosition="bottom" dots={showDots} slidesToShow={numberOfSlides}>
+          <Carousel autoplay infinite centerMode dotPosition="bottom" dots={showDots} slidesToShow={numberOfSlides}>
             {results && results.map((result) => {
               const {id, attributes} = result;
               const {small: posterImage} = result.attributes.posterImage;

@@ -1,8 +1,8 @@
-import {useContext} from 'react';
+import {useContext, useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import Head from 'next/head';
 import ContainerContext from '../../../contexts/containerContext';
-import {Button, Typography, Rate} from 'antd';
+import {Button, Typography, Rate, Spin} from 'antd';
 
 const animeEndpoint = 'https://kitsu.io/api/edge/';
 
@@ -23,7 +23,14 @@ export default function ItemPage({data}) {
   const {attributes: anime} = results;
   const router = useRouter();
   const {setSubmitSearch} = useContext(ContainerContext);
+  const [loading, setLoading] = useState(true);
   const youtubeLink = 'https://www.youtube.com/watch?v=';
+
+  useEffect(() => {
+    if (results) {
+      setLoading(false);
+    }
+  }, []);
 
   function handleGoBackButton() {
     router.back();
@@ -34,32 +41,38 @@ export default function ItemPage({data}) {
     <div>
       <Head><title>Animelog | {anime.canonicalTitle}</title></Head>
 
-      <div className="anime-page">
-        {anime && (
-          <div className="anime-page__card">
-            {/* <img className='anime-page__cover' src={anime.coverImage.original} /> */}
-            <div className='anime-page__card-container'>
-              <div className='anime-page__card-container__poster'> 
-                <img src={anime.posterImage.original} />
-                <Rate disabled defaultValue={parseInt(anime.averageRating/20)} />
-              </div>
-              <div className='anime-page__text-container'>
-                <Typography className='anime-page__text-container__title'>{anime.canonicalTitle}</Typography>
-                <Typography className='anime-page__text-container__age'>Restrição de Idade: <strong>{anime.ageRatingGuide}</strong></Typography>
-                <Typography className='anime-page__text-container__description'>{anime.description}</Typography>
-                <Typography>Número de Episódios: {anime.episodeCount}</Typography>
-                {anime.youtubeVideoId && <a target="_blank" href={`${youtubeLink}${anime.youtubeVideoId}`} rel="noreferrer">Assistir ao trailer</a>}
+      {loading ? (
+        <div className="spinner">
+            <Spin size="large" />
+        </div>
+      ) : (
+        <div className="anime-page">
+          {anime && (
+            <div className="anime-page__card">
+              {/* <img className='anime-page__cover' src={anime.coverImage.original} /> */}
+              <div className='anime-page__card-container'>
+                <div className='anime-page__card-container__poster'> 
+                  <img src={anime.posterImage.original} />
+                  <Rate disabled defaultValue={parseInt(anime.averageRating/20)} />
+                </div>
+                <div className='anime-page__text-container'>
+                  <Typography className='anime-page__text-container__title'>{anime.canonicalTitle}</Typography>
+                  <Typography className='anime-page__text-container__age'>Restrição de Idade: <strong>{anime.ageRatingGuide}</strong></Typography>
+                  <Typography className='anime-page__text-container__description'>{anime.description}</Typography>
+                  <Typography>Número de Episódios: {anime.episodeCount}</Typography>
+                  {anime.youtubeVideoId && <a target="_blank" href={`${youtubeLink}${anime.youtubeVideoId}`} rel="noreferrer">Assistir ao trailer</a>}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        <div className='anime-page__button'>
-          <Button size='large' danger onClick={handleGoBackButton}>
-            Voltar
-          </Button>
+          <div className='anime-page__button'>
+            <Button size='large' danger onClick={handleGoBackButton}>
+              Voltar
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
