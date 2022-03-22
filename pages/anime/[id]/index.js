@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Head from "next/head";
-import { Button, Typography, PageHeader, Card } from "antd";
+import { Button, Typography, Card } from "antd";
 
 const animeEndpoint = 'https://kitsu.io/api/edge/';
 
@@ -20,17 +20,10 @@ export default function IndexPage({ data }) {
   const { data: results = [] } = data;
   const { attributes: anime } = results;
   const youtubeLink = 'https://www.youtube.com/watch?v=';
-  console.log(results)
 
   return (
     <div>
-      <Head><title>Animeflix</title></Head>
-
-        <PageHeader>
-          <Link href='/'>
-            <Button>Animeflix</Button>
-          </Link>
-        </PageHeader>
+      <Head><title>Animeflix | {anime.canonicalTitle}</title></Head>
 
       <div className="anime-list">
         {anime && (

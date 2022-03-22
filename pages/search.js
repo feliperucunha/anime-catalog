@@ -22,7 +22,7 @@ export default function IndexPage() {
 
   return (
     <div>
-      <Head><title>Animeflix</title></Head>
+      <Head><title>Animeflix | Search: {searchTerm}</title></Head>
 
       <ul className="anime-list">
         {results && results.map(result => {
