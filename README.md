@@ -46,6 +46,6 @@ desta forma tive que reformular a busca implementada inicialmente.
 
 ## 📝 Licença
 
-Este projeto esta sobe a licença [MIT](./LICENSE).
+Este projeto está sobe a licença [MIT](./LICENSE).
 
 Feito por Felipe Cunha 👋 [Entre em contato!](https://www.linkedin.com/in/feliperubencunha/)
