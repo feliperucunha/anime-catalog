@@ -3,7 +3,7 @@ import Head from 'next/head';
 import {Card, Carousel, Typography} from 'antd';
 import { useWindowSize } from '../utils/windowSize';
 import {useState, useEffect} from 'react';
-import SpinnerComponent from '../components/spinner';
+import {SpinnerComponent} from '../components';
 
 const animeEndpoint = 'https://kitsu.io/api/edge/trending/anime';
 
