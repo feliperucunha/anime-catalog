@@ -2,7 +2,8 @@ require('../styles/global.less');
 
 import {useState} from 'react';
 import ContainerContext from '../contexts/containerContext';
-import {FooterComponent, NavbarComponent} from '../components';
+import NavbarComponent from '../components/navbar';
+import FooterComponent from '../components/footer';
 
 function App({Component, pageProps}) {
   const [searchTerm, setSearchTerm] = useState();
