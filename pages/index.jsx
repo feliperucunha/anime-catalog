@@ -4,8 +4,7 @@ import {Card, Carousel, Typography} from 'antd';
 import { useWindowSize } from '../utils/windowSize';
 import {useState, useEffect} from 'react';
 import {SpinnerComponent} from '../components';
-
-const animeEndpoint = 'https://kitsu.io/api/edge/trending/anime';
+import {animeEndpoint} from '../constants';
 
 export async function getServerSideProps() {
   const res = await fetch(animeEndpoint);
@@ -23,9 +22,7 @@ export default function IndexPage({data}) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (results) {
-      setLoading(false);
-    }
+    if (results) setLoading(false);
   }, []);
 
   const size = useWindowSize();
@@ -47,7 +44,9 @@ export default function IndexPage({data}) {
 
   return (
     <div>
-      <Head><title>Animelog</title></Head>
+      <Head>
+        <title>Animelog</title>
+      </Head>
 
       {loading ? (
         <SpinnerComponent />

@@ -29,9 +29,7 @@ export default function ItemPage({data}) {
   const youtubeLink = 'https://www.youtube.com/watch?v=';
 
   useEffect(() => {
-    if (results) {
-      setLoading(false);
-    }
+    if (results) setLoading(false);
   }, []);
 
   function handleGoBackButton() {
@@ -41,7 +39,9 @@ export default function ItemPage({data}) {
 
   return (
     <div>
-      <Head><title>Animelog | {anime.canonicalTitle}</title></Head>
+      <Head>
+        <title>Animelog | {anime.canonicalTitle}</title>
+      </Head>
 
       {loading ? (
         <SpinnerComponent />

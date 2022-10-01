@@ -1,0 +1,1 @@
+export const animeEndpoint = 'https://kitsu.io/api/edge/trending/anime';
