@@ -3,7 +3,8 @@ import {useRouter} from 'next/router';
 import Head from 'next/head';
 import ContainerContext from '../../../contexts/containerContext';
 import {Button, Typography, Rate} from 'antd';
-import SpinnerComponent from '../../../components/spinner';
+import {SpinnerComponent} from '../../../components';
+
 
 const animeEndpoint = 'https://kitsu.io/api/edge/';
 
