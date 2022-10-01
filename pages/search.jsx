@@ -3,7 +3,7 @@ import Head from 'next/head';
 import {useState, useContext, useEffect} from 'react';
 import {Button, Rate, Typography, Card} from 'antd';
 import ContainerContext from '../contexts/containerContext';
-import SpinnerComponent from '../components/spinner';
+import {SpinnerComponent} from '../components';
 
 export default function IndexPage() {
   const {searchTerm = '', submitSearch, setSubmitSearch} = useContext(ContainerContext);
